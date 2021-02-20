@@ -1,1 +1,3 @@
 krakenv/
+__pycache__/
+tester.py

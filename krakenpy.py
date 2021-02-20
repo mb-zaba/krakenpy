@@ -2,7 +2,7 @@
 # @Author: mb-zaba
 # @Date:   2021-02-19 15:54:59
 # @Last Modified by:   mb-zaba
-# @Last Modified time: 2021-02-20 10:54:00
+# @Last Modified time: 2021-02-20 11:05:27
 
 import pandas as pd
 import requests
@@ -119,7 +119,8 @@ class krakenpy:
 		endpoint = f"{self.api_url}/public/Depth"
 		r = requests.post(endpoint, data={'pair':pair})
 		data = r.json()
-		
+		if len(data['error']) < 1:
+			return data['result']
 
 
 
