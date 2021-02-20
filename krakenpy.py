@@ -2,23 +2,23 @@
 # @Author: mb-zaba
 # @Date:   2021-02-19 15:54:59
 # @Last Modified by:   mb-zaba
-# @Last Modified time: 2021-02-20 12:18:35
+# @Last Modified time: 2021-02-20 12:50:14
 
 import pandas as pd
 import requests
 from dotenv import load_dotenv
 
-class krakenpy:
+class Krakenpy:
 
 
 	def __init__(self, api_key=None):
 		self.api_url = "https://api.kraken.com/0"
 		self.api_key = api_key
-		self.public = self.public(self.api_url)
+		self.public = self.Public(self.api_url)
 
 
 	
-	class public:
+	class Public:
 
 		def __init__(self, api_url):
 			self.api_url = api_url
@@ -89,9 +89,9 @@ class krakenpy:
 	
 	
 		# Get OHLC
-		def get_ohlc(self, pair):
+		def get_ohlc(self, pair, interval=1):
 			endpoint = f"{self.api_url}/public/OHLC"
-			r = requests.post(endpoint, data={'pair':pair})
+			r = requests.post(endpoint, data={'pair':pair, 'interval':interval})
 			data = r.json()
 			data_struct = {
 				"time": [],
