@@ -2,7 +2,7 @@
 # @Author: mb-zaba
 # @Date:   2021-02-19 15:54:59
 # @Last Modified by:   mb-zaba
-# @Last Modified time: 2021-02-20 12:50:14
+# @Last Modified time: 2021-03-01 17:06:21
 
 import pandas as pd
 import requests
@@ -89,9 +89,12 @@ class Krakenpy:
 	
 	
 		# Get OHLC
-		def get_ohlc(self, pair, interval=1):
+		def get_ohlc(self, pair, interval=1, since=None):
 			endpoint = f"{self.api_url}/public/OHLC"
-			r = requests.post(endpoint, data={'pair':pair, 'interval':interval})
+			if since == None:
+				r = requests.post(endpoint, data={'pair':pair, 'interval':interval})
+			else:
+				r = requests.post(endpoint, data={'pair':pair, 'interval':interval, 'since':since})
 			data = r.json()
 			data_struct = {
 				"time": [],
